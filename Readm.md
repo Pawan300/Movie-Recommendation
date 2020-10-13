@@ -13,18 +13,18 @@ link(https://grouplens.org/datasets/movielens/)
 ### Information about the data : 
 
 *********************************************************
-Number of Users : 610
+Number of Users : 610 <br>
 Number of movies : 9742
 
 *********************************************************
 
 ### Movies with highest number of user ratings :
 
-Age of Innocence, The (1993)
-I Love Trouble (1994)
-Virtuosity (1995)
-Cemetery Man (Dellamorte Dellamore) (1994)
-Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)
+Age of Innocence, The (1993)<br>
+I Love Trouble (1994)<br>
+Virtuosity (1995)<br>
+Cemetery Man (Dellamorte Dellamore) (1994)<br>
+Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
 
 *********************************************************
 
