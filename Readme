@@ -1,9 +1,0 @@
-Dataset :
-I am using Movielens Data set for recommending the movies to user.
-link(https://grouplens.org/datasets/movielens/)
-
-Algorithm Used:
-1.Matrix Factorization with Gradient Descent 
-2.Regularised Matrix Factorisation
-3.Line Search method In Gradient Descent
-4.Particle Swarm Optimization
