@@ -15,7 +15,7 @@ def plot_error(error):
     plt.xlabel("Iterations")
     plt.ylabel("Error rates")
     plt.title("Error rates vs Iterations")
-    plt.savefig("Error.png")
+    plt.savefig("Images/Error.png")
     return True
 
 def indicator_matrix(data):
@@ -44,7 +44,7 @@ def show_rating(data):
     plt.xlabel("Ratings")
     plt.ylabel("Counts")
     plt.title("Ratings counts")
-    plt.savefig("Rating.png")
+    plt.savefig("Images/Rating.png")
 
 
 def analyis(ratings, movie_data):

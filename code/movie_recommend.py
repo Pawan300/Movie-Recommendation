@@ -80,7 +80,7 @@ def main():
     rating_path = "/home/acer/Desktop/Movie-Recommendation/ratings.csv"
     movie_path = "/home/acer/Desktop/Movie-Recommendation/movies.csv"
 
-    epochs = 20000
+    epochs = 10000
 
     try:
         ratings, movies_data, status = loading_data(rating_path, movie_path)
