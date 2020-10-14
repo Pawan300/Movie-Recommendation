@@ -36,3 +36,34 @@ Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
   474      |   2108       |
   448      |   1864       |
   274      |   1346       |
+
+**********************************************************
+
+### Errors :
+
+  * Training error :  1.3918209209829502
+  * Testing error :  1.628761274863529
+
+**********************************************************
+
+### It's time to recommend : 
+
+<b>For User Id : 2</b>
+
+  Movie ID   |    Movie                     |
+-------------|------------------------------|
+  1824       |   Homegrown (1998)           | 
+  2456       |   Fly II, The (1989)         |
+  3353       |   Closer You Get, The (2000) |
+  6269       |   Stevie (2002)              |
+  34319      |   Island, The (2005)         |
+
+                     
+
+                     
+
+                     
+
+                     
+
+                    
