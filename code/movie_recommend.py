@@ -11,7 +11,6 @@ from utils import (
     analyis,
     indicator_matrix,
     loading_data,
-    rating_matrix,
     train_test_split,
     plot_error,
     show_rating
@@ -77,8 +76,8 @@ def recommend(users, movies, user_id, user_rating):
 
 def main():
 
-    rating_path = "/home/acer/Desktop/Movie-Recommendation/ratings.csv"
-    movie_path = "/home/acer/Desktop/Movie-Recommendation/movies.csv"
+    rating_path = "dataset/ratings.csv"
+    movie_path = "dataset/movies.csv"
 
     epochs = 10000
 
@@ -87,17 +86,16 @@ def main():
         if status == False:
             return "Path doesn't exist"
 
-        user_rating = np.zeros(
-            (len(np.unique(ratings["userId"])), len(np.unique(ratings["movieId"])))
-        )
+        user_rating = ratings.pivot(index='userId', columns='movieId', values='rating')
+        user_rating = user_rating.fillna(0)
+        user_rating = user_rating.values
+
         train = np.zeros(user_rating.shape)
         test = np.zeros(user_rating.shape)
 
         show_rating(ratings)
 
         analyis(ratings, movies_data)
-
-        rating_matrix(ratings, user_rating)
         train_test_split(user_rating, train, test)
 
         Itrain = indicator_matrix(train)
@@ -126,6 +124,7 @@ def main():
             print("\n", temp["movieId"], "\t\t\t", temp["title"])
 
         return "Successfully build"
+
     except Exception as e:
         print("Caught an Exception : ", e)
         print("Build Failed !!!!!!!!!!!!!!")

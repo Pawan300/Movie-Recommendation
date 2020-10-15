@@ -76,8 +76,8 @@ def train_test_split(user_rating, train, test):
     non_zero = []
     for i in range(user_rating.shape[0]):
         for j in range(user_rating.shape[1]):
-            if user_rating[i, j] != 0:
-                non_zero.append([i, j])
+            if user_rating[i][j] != 0:
+                non_zero.append([i , j])
     k = 0
     while k <= t:
         i = random.randint(1, len(non_zero) - 1)
@@ -89,11 +89,3 @@ def train_test_split(user_rating, train, test):
 
     for i in non_zero:
         test[i[0], i[1]] = user_rating[i[0], i[1]]
-
-
-def rating_matrix(ratings, user_rating):
-    for i in np.unique(ratings["userId"]):
-        k = ratings[ratings["userId"] == i]
-    for j in range(len(k)):
-        if k["movieId"].iloc[j] - 1 <= 9742:
-            user_rating[i - 1, k["movieId"].iloc[j] - 1] = k["rating"].iloc[j]
