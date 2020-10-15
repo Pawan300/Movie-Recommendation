@@ -43,6 +43,9 @@ Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
 
   * Training error :  1.0980925016874177
   * Testing error :  1.1524514692496157
+  
+### Training error :<br>
+<img src="https://github.com/Pawan300/Movie-Recommendation/blob/master/Images/Error.png" width=400 height=400>
 
 **********************************************************
 
