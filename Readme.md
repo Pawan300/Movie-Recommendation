@@ -39,10 +39,10 @@ Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
 
 **********************************************************
 
-### Errors :
+### Errors (epochs 10000):
 
-  * Training error :  1.3918209209829502
-  * Testing error :  1.628761274863529
+  * Training error :  1.0980925016874177
+  * Testing error :  1.1524514692496157
 
 **********************************************************
 
@@ -50,20 +50,12 @@ Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
 
 <b>For User Id : 2</b>
 
-  Movie ID   |    Movie                     |
--------------|------------------------------|
-  1824       |   Homegrown (1998)           | 
-  2456       |   Fly II, The (1989)         |
-  3353       |   Closer You Get, The (2000) |
-  6269       |   Stevie (2002)              |
-  34319      |   Island, The (2005)         |
-
-                     
-
-                     
-
-                     
-
-                     
+  Movie ID     |         Movie                                                  |
+---------------|----------------------------------------------------------------|
+  26776        |   Porco Rosso (Crimson Pig) (Kurenai no buta) (1992)           | 
+  104879       |   Prisoners (2013)                                             |
+  5358         |   Mountains of the Moon (1990)                                 |
+  175569       |   Wind River (2017)                                            |
+  626          |   Thin Line Between Love and Hate, A (1996)                    |
 
                     
