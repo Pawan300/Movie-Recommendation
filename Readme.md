@@ -36,3 +36,26 @@ Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)<br>
   474      |   2108       |
   448      |   1864       |
   274      |   1346       |
+
+**********************************************************
+
+### Errors (epochs 10000):
+
+  * Training error :  1.0980925016874177
+  * Testing error :  1.1524514692496157
+
+**********************************************************
+
+### It's time to recommend : 
+
+<b>For User Id : 2</b>
+
+  Movie ID     |         Movie                                                  |
+---------------|----------------------------------------------------------------|
+  26776        |   Porco Rosso (Crimson Pig) (Kurenai no buta) (1992)           | 
+  104879       |   Prisoners (2013)                                             |
+  5358         |   Mountains of the Moon (1990)                                 |
+  175569       |   Wind River (2017)                                            |
+  626          |   Thin Line Between Love and Hate, A (1996)                    |
+
+                    
