@@ -18,10 +18,9 @@ Examples of Recommendation systems are Netflix or YouTube that suggest playlists
 
 - Hybrid systems, which combine both types of information with the aim of avoiding problems that are generated when working with just one kind.
 
-## Dataset
+## Dataset : 
 
-[link](https://grouplens.org/datasets/movielens/)
-Movie lens Dataset consists of :
+Movie lens Dataset consists of ([link](https://grouplens.org/datasets/movielens/)):
 * 100000 ratings (~ 1 lakh) 
 * 600 users
 
@@ -107,7 +106,7 @@ Gradient descent is a first-order iterative optimization algorithm for finding a
  </p>
  
 ## Results :
-*************************************************************************************
+
 ### Root Mean Square Error (RMSE)
 
   Optimization               |   Epochs        |    Train error   |    Test error    |
@@ -115,8 +114,6 @@ Gradient descent is a first-order iterative optimization algorithm for finding a
   Gradient Descent (MMF)     |    10000        |     1.09         |     1.14         |
   Regularised (MMF)          |    1000         |     1.43         |     1.46         |
 
-
-*************************************************************************************
 
 ### It's time to recommend : 
 
