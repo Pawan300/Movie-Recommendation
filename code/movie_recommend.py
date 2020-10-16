@@ -1,4 +1,5 @@
 import math
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -10,7 +11,7 @@ from utils import (
     loading_data,
     train_test_split,
     plot_error,
-    show_rating
+    show_rating,
 )
 
 from movie_recommend_regularization import gradient_r, MMF_r
@@ -21,14 +22,14 @@ beta = 0.0001
 
 def gradient(users, movies, result):
 
-    users=users+2*0.000001*(result.dot(movies))
-    movies=movies+2*0.000001*(result.T.dot(users))
+    users = users + 2 * 0.000001 * (result.dot(movies))
+    movies = movies + 2 * 0.000001 * (result.T.dot(users))
 
     return (users, movies)
 
 
 def MMF(user_rating, train, Itrain, k):
-    
+
     users = np.random.rand(user_rating.shape[0], 5)
     movies = np.random.randint(4, size=(user_rating.shape[1], 5))
 
@@ -44,7 +45,7 @@ def MMF(user_rating, train, Itrain, k):
 def accuracy(users, movies, data, I):
 
     data = np.multiply(data, I)  # indicator matrix problem
-    result = users.dot(movies.T) 
+    result = users.dot(movies.T)
     e = 0
     for i in range(data.shape[0]):
         for j in range(data.shape[1]):
@@ -75,12 +76,13 @@ def recommend(users, movies, user_id, user_rating):
             count = count - 1
     return movies_index
 
+
 def worker(user_rating, train, test, Itrain, Itest, movies_data, epochs):
 
     error, users, movies = MMF(user_rating, train, Itrain, epochs)
 
     ploting = plot_error(error)
-    if ploting == False: 
+    if ploting == False:
         print("Something is wrong with errors.")
         print("Error you have : ", error)
 
@@ -94,23 +96,36 @@ def worker(user_rating, train, test, Itrain, Itest, movies_data, epochs):
     user_id = 2
 
     movie_index = recommend(users, movies, user_id, user_rating)
-        
+
     for i in movie_index:
         temp = movies_data.iloc[i]
         print("\n", temp["movieId"], "\t\t\t", temp["title"])
 
 
+def argument_parser():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--d",
+        "--data_path",
+        dest="data_path",
+        help="path to data file",
+        default="dataset/",
+    )
+
+    args = parser.parse_args()
+    return args
+
+
 def main():
 
-    rating_path = "dataset/ratings.csv"
-    movie_path = "dataset/movies.csv"
-
+    args = argument_parser()
     try:
-        ratings, movies_data, status = loading_data(rating_path, movie_path)
+        ratings, movies_data, status = loading_data(args.data_path)
         if status == False:
             return "Path doesn't exist"
 
-        user_rating = ratings.pivot(index='userId', columns='movieId', values='rating')
+        user_rating = ratings.pivot(index="userId", columns="movieId", values="rating")
         user_rating = user_rating.fillna(0)
         user_rating = user_rating.values
 
@@ -124,18 +139,19 @@ def main():
 
         Itrain = indicator_matrix(train)
         Itest = indicator_matrix(test)
-        
-        print("#"*100)
+
+        print("#" * 100)
         print("\n\nWithout Regularization : \n")
         worker(user_rating, train, test, Itrain, Itest, movies_data, 10000)
-        print("#"*100)
+        print("#" * 100)
         print("\n\nWith Regularization : \n")
-        worker(user_rating, train, test, Itrain, Itest, movies_data, 1000)
+        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000)
         return "Successfully build"
 
     except Exception as e:
         print("Caught an Exception : ", e)
         print("Build Failed !!!!!!!!!!!!!!")
+
 
 if __name__ == "__main__":
     print(main())

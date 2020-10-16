@@ -6,17 +6,19 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
+
 def plot_error(error):
 
-    if len(error)==0:
+    if len(error) == 0:
         return False
 
-    plt.plot(list(range(1, len(error)+1)),error)
+    plt.plot(list(range(1, len(error) + 1)), error)
     plt.xlabel("Iterations")
     plt.ylabel("Error rates")
     plt.title("Error rates vs Iterations")
     plt.savefig("Images/Error.png")
     return True
+
 
 def indicator_matrix(data):
 
@@ -28,11 +30,11 @@ def indicator_matrix(data):
     return I
 
 
-def loading_data(rating_path, movie_path):
+def loading_data(data_path):
 
-    if os.path.isfile(rating_path) and os.path.isfile(movie_path):
-        ratings = pd.read_csv(rating_path)
-        movies = pd.read_csv(movie_path)
+    if os.path.isfile(os.path.join(data_path, "ratings.csv")):
+        ratings = pd.read_csv(os.path.join(data_path, "ratings.csv"))
+        movies = pd.read_csv(os.path.join(data_path, "movies.csv"))
         return ratings, movies, True
     else:
         return [], [], False
@@ -77,7 +79,7 @@ def train_test_split(user_rating, train, test):
     for i in range(user_rating.shape[0]):
         for j in range(user_rating.shape[1]):
             if user_rating[i][j] != 0:
-                non_zero.append([i , j])
+                non_zero.append([i, j])
     k = 0
     while k <= t:
         i = random.randint(1, len(non_zero) - 1)

@@ -3,6 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 
+
 def gradient_r(users, movies, result, beta):
 
     users = users + 2 * 0.00000001 * (result.dot(movies) - 2 * beta * (np.sum(users)))
