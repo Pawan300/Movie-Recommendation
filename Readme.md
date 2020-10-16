@@ -106,22 +106,27 @@ Gradient descent is a first-order iterative optimization algorithm for finding a
  <img src="https://static-01.hindawi.com/articles/ijap/volume-2013/649049/figures/649049.fig.003.jpg"  width="400" height="300" style="vertical-align:top; margin:10px">
  </p>
  
- ## Results :
- ### Root Mean Square Error (RMSE)
-<p align="center">
-<img src="https://github.com/Oprishri/Recommendation-system-based-on-Nonnegative-Matrix-Factorization/blob/master/images/results.PNG" alt="netflix" width="600" height="300" style="vertical-align:top; margin:10px">
-</p>
- 
-### Movies Recommendations: 
+## Results :
+*************************************************************************************
+### Root Mean Square Error (RMSE)
 
-<p align="center">
-<img src="https://github.com/Oprishri/Recommendation-system-based-on-Nonnegative-Matrix-Factorization/blob/master/images/re1.PNG" width="600" height="300" style="vertical-align:top; margin:10px">
-</p>
-<p align="center">
-<img src="https://github.com/Oprishri/Recommendation-system-based-on-Nonnegative-Matrix-Factorization/blob/master/images/re2.PNG" width="600" height="300" style="vertical-align:top; margin:10px">
-</p>
+  Optimization               |   Epochs        |    Train error   |    Test error    |
+-----------------------------|-----------------|------------------|------------------|
+  Gradient Descent (MMF)     |    10000        |     1.09         |     1.14         |
+  Regularised (MMF)          |    1000         |     1.43         |     1.46         |
 
-## Conclusion
 
-- In this project, we are trying to find the movies that we can recommend to user as per their interest. By using Matrix Factorization and some of the variate of Gradient Descent we able to do so.
-- In our project Swarm optimization works so well that it minimises the error to 0.87.
+*************************************************************************************
+
+### It's time to recommend : 
+
+<b>For User Id : 2</b>
+
+  Movie ID     |         Movie                                                  |
+---------------|----------------------------------------------------------------|
+  26776        |   Porco Rosso (Crimson Pig) (Kurenai no buta) (1992)           | 
+  104879       |   Prisoners (2013)                                             |
+  5358         |   Mountains of the Moon (1990)                                 |
+  175569       |   Wind River (2017)                                            |
+  626          |   Thin Line Between Love and Hate, A (1996)                    |
+
