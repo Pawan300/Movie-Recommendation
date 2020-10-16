@@ -17,34 +17,34 @@ from utils import (
     show_rating
 )
 
+beta=0.0001
 
 def gradient(users, movies, result):
 
-    m=users.shape[0]
-    users=users+2*0.000001*(result.dot(movies))
-    movies=movies+2*0.000001*(result.T.dot(users))
+    users=users+2*0.00000001*(result.dot(movies)-2*beta*(np.sum(users)))
+    movies=movies+2*0.00000001*(result.T.dot(users)-2*beta*(np.sum(movies)))
 
     return (users, movies)
 
 
 def MMF(user_rating, train, Itrain, k):
-    
     users = np.random.rand(user_rating.shape[0], 5)
     movies = np.random.randint(4, size=(user_rating.shape[1], 5))
 
     error = []
     for i in range(k):
+        cost = np.sum(np.square(np.multiply((train - users.dot(movies.T)), Itrain)))+beta*((np.sum(np.square(user))+(np.sum(np.square(movies)))))
         result = np.multiply((train - users.dot(movies.T)), Itrain)
         users, movies = gradient(users, movies, result)
-        error.append(np.sum(np.square(result)))
+        error.append(np.sum(np.square(cost)))
 
     return error, users, movies
 
 
 def accuracy(users, movies, data, I):
 
-    data = np.multiply(data, I)  # indicator matrix problem
-    result = users.dot(movies.T) #prob prob prob and problem
+    data = np.multiply(data, I)
+    result = users.dot(movies.T)
     e = 0
     for i in range(data.shape[0]):
         for j in range(data.shape[1]):
