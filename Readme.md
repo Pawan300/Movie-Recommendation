@@ -93,17 +93,17 @@ Gradient descent is a first-order iterative optimization algorithm for finding a
  
 - <b>Sliding Window Gradient descent</b>
  <p align="center">
- <img src="https://miro.medium.com/max/666/1*wytgFSuRwFp82yQ9kxD_-A.gif" alt="netflix" width="600"  height="300" style="vertical-align:top; margin:10px">
+ <img src="https://miro.medium.com/max/666/1*wytgFSuRwFp82yQ9kxD_-A.gif" alt="netflix" width="400"  height="300" style="vertical-align:top; margin:10px">
  </p>
  
 - <b>Line Search Gradient descent</b>
  <p align="center">
- <img src="https://github.com/Oprishri/Recommendation-system-based-on-Nonnegative-Matrix-Factorization/blob/master/images/line%20search.PNG" alt="netflix" width="600"  height="300" style="vertical-align:top; margin:10px">
+ <img src="https://github.com/Oprishri/Recommendation-system-based-on-Nonnegative-Matrix-Factorization/blob/master/images/line%20search.PNG" alt="netflix" width="400"  height="300" style="vertical-align:top; margin:10px">
  </p>
  
 - <b>Particle Swarm Optimization(PSO) Gradient descent</b>
  <p align="center">
- <img src="https://static-01.hindawi.com/articles/ijap/volume-2013/649049/figures/649049.fig.003.jpg"  width="600" height="300" style="vertical-align:top; margin:10px">
+ <img src="https://static-01.hindawi.com/articles/ijap/volume-2013/649049/figures/649049.fig.003.jpg"  width="400" height="300" style="vertical-align:top; margin:10px">
  </p>
  
  ## Results :
