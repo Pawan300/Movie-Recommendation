@@ -14,7 +14,7 @@ from utils import (
     show_rating,
 )
 
-from movie_recommend_regularization import gradient_r, MMF_r
+from movie_recommend_regularization import MMF_r
 
 
 beta = 0.0001
@@ -77,9 +77,12 @@ def recommend(users, movies, user_id, user_rating):
     return movies_index
 
 
-def worker(user_rating, train, test, Itrain, Itest, movies_data, epochs):
+def worker(user_rating, train, test, Itrain, Itest, movies_data, epochs, status):
 
-    error, users, movies = MMF(user_rating, train, Itrain, epochs)
+    if status == "GD":
+        error, users, movies = MMF(user_rating, train, Itrain, epochs)
+    elif status == "R_GD":
+        error, users, movies = MMF_r(user_rating, train, Itrain, beta, epochs)
 
     ploting = plot_error(error)
     if ploting == False:
@@ -142,10 +145,10 @@ def main():
 
         print("#" * 100)
         print("\n\nWithout Regularization : \n")
-        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000)
+        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "GD")
         print("#" * 100)
         print("\n\nWith Regularization : \n")
-        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000)
+        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "R_GD")
         return "Successfully build"
 
     except Exception as e:
