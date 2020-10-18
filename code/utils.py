@@ -1,3 +1,4 @@
+import math
 import os
 import random
 from collections import Counter
@@ -7,7 +8,50 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 
-def plot_error(error):
+def gradient(users, movies, result, alpha):
+
+    users = users + 2 * alpha * (result.dot(movies))
+    movies = movies + 2 * alpha * (result.T.dot(users))
+
+    return (users, movies)
+
+
+def accuracy(users, movies, data, I):
+
+    data = np.multiply(data, I)  # indicator matrix problem
+    result = users.dot(movies.T)
+    e = 0
+    for i in range(data.shape[0]):
+        for j in range(data.shape[1]):
+            if data[i, j] != 0:
+                e += (data[i, j] - result[i, j]) ** 2
+    return math.sqrt(e / np.count_nonzero(data))
+
+
+def recommend(users, movies, user_id, user_rating):
+
+    result = users.dot(movies.T)
+    result = result[user_id]
+    user_rating = user_rating[user_id]
+
+    temp = []
+    for i, j in enumerate(result):
+        temp.append((i, j))
+
+    result = sorted(temp, key=lambda x: x[1], reverse=True)
+    count = 5  # only top 5 recommendation
+    movies_index = []
+
+    for i in result:
+        if count == 0:
+            break
+        if user_rating[i[0]] == 0:
+            movies_index.append(i[0])
+            count = count - 1
+    return movies_index
+
+
+def plot_error(error, name):
 
     if len(error) == 0:
         return False
@@ -16,7 +60,7 @@ def plot_error(error):
     plt.xlabel("Iterations")
     plt.ylabel("Error rates")
     plt.title("Error rates vs Iterations")
-    plt.savefig("Images/Error.png")
+    plt.savefig(os.path.join("Images/", name))
     return True
 
 

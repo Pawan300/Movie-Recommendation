@@ -1,31 +1,23 @@
-import math
 import argparse
 
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-
+from movie_recommend_regularization import MMF_r
+from optimizer import optimizer_function
 from utils import (
+    accuracy,
     analyis,
+    gradient,
     indicator_matrix,
     loading_data,
-    train_test_split,
     plot_error,
+    recommend,
     show_rating,
+    train_test_split,
 )
 
-from movie_recommend_regularization import MMF_r
-
-
 beta = 0.0001
-
-
-def gradient(users, movies, result):
-
-    users = users + 2 * 0.000001 * (result.dot(movies))
-    movies = movies + 2 * 0.000001 * (result.T.dot(users))
-
-    return (users, movies)
 
 
 def MMF(user_rating, train, Itrain, k):
@@ -36,55 +28,22 @@ def MMF(user_rating, train, Itrain, k):
     error = []
     for i in range(k):
         result = np.multiply((train - users.dot(movies.T)), Itrain)
-        users, movies = gradient(users, movies, result)
+        users, movies = gradient(users, movies, result, 0.000001)
         error.append(np.sum(np.square(result)))
 
     return error, users, movies
-
-
-def accuracy(users, movies, data, I):
-
-    data = np.multiply(data, I)  # indicator matrix problem
-    result = users.dot(movies.T)
-    e = 0
-    for i in range(data.shape[0]):
-        for j in range(data.shape[1]):
-            if data[i, j] != 0:
-                e += (data[i, j] - result[i, j]) ** 2
-    return math.sqrt(e / np.count_nonzero(data))
-
-
-def recommend(users, movies, user_id, user_rating):
-
-    result = users.dot(movies.T)
-    result = result[user_id]
-    user_rating = user_rating[user_id]
-
-    temp = []
-    for i, j in enumerate(result):
-        temp.append((i, j))
-
-    result = sorted(temp, key=lambda x: x[1], reverse=True)
-    count = 5  # only top 5 recommendation
-    movies_index = []
-
-    for i in result:
-        if count == 0:
-            break
-        if user_rating[i[0]] == 0:
-            movies_index.append(i[0])
-            count = count - 1
-    return movies_index
 
 
 def worker(user_rating, train, test, Itrain, Itest, movies_data, epochs, status):
 
     if status == "GD":
         error, users, movies = MMF(user_rating, train, Itrain, epochs)
+        ploting = plot_error(error, "Gradient_error.png")
+
     elif status == "R_GD":
         error, users, movies = MMF_r(user_rating, train, Itrain, beta, epochs)
+        ploting = plot_error(error, "Randomize_gradient_error.png")
 
-    ploting = plot_error(error)
     if ploting == False:
         print("Something is wrong with errors.")
         print("Error you have : ", error)
@@ -143,12 +102,19 @@ def main():
         Itrain = indicator_matrix(train)
         Itest = indicator_matrix(test)
 
+        # print("#" * 100)
+        # print("\n\nNon Negative Matrix Factorization  : \n")
+        # worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "GD")
+
+        # print("#" * 100)
+        # print("\n\nNon Negative Matrix Factorization With Regularization : \n")
+        # worker(user_rating, train, test, Itrain, Itest, movies_data, 5000, "R_GD")
+       
         print("#" * 100)
-        print("\n\nWithout Regularization : \n")
-        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "GD")
-        print("#" * 100)
-        print("\n\nWith Regularization : \n")
-        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "R_GD")
+        print("\n\n!!!!!!!!!!!!! Different type of Optimizer !!!!!!!!!!!!")
+        print("\n\nSliding Window protocol for optimizer : ")
+        optimizer_function(user_rating, train, test, Itrain, Itest, movies_data)
+
         return "Successfully build"
 
     except Exception as e:
