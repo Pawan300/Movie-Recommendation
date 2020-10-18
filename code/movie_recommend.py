@@ -102,13 +102,13 @@ def main():
         Itrain = indicator_matrix(train)
         Itest = indicator_matrix(test)
 
-        # print("#" * 100)
-        # print("\n\nNon Negative Matrix Factorization  : \n")
-        # worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "GD")
+        print("#" * 100)
+        print("\n\nNon Negative Matrix Factorization  : \n")
+        worker(user_rating, train, test, Itrain, Itest, movies_data, 10000, "GD")
 
-        # print("#" * 100)
-        # print("\n\nNon Negative Matrix Factorization With Regularization : \n")
-        # worker(user_rating, train, test, Itrain, Itest, movies_data, 5000, "R_GD")
+        print("#" * 100)
+        print("\n\nNon Negative Matrix Factorization With Regularization : \n")
+        worker(user_rating, train, test, Itrain, Itest, movies_data, 5000, "R_GD")
        
         print("#" * 100)
         print("\n\n!!!!!!!!!!!!! Different type of Optimizer !!!!!!!!!!!!")
