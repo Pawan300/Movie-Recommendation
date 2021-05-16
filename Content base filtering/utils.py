@@ -11,7 +11,7 @@ def loading_data(data_path):
     
     if os.path.isfile(os.path.join(data_path, "ratings.csv")):
         ratings = pd.read_csv(os.path.join(data_path, "ratings.csv"))
-        movies = pd.read_csv(os.path.join(data_path, "preprocessed.csv"))
+        movies = pd.read_csv(os.path.join(data_path, "final_dataset.csv"))
         links = pd.read_csv(os.path.join(data_path, "links.csv"))
         metadata = pd.read_csv(os.path.join(data_path, "movies_metadata.csv"))
         return ratings, movies, links, metadata, True
@@ -102,14 +102,10 @@ def using_metadata_and_API(metadata, movies_data, links, API_key):
   return movies_data
 
 def give_recomendations(title, movies_data, sig):
-
+    title = title.lower()
     idx = movies_data.index[movies_data["title"] == title].tolist()
-    if len(idx) > 1:
-      return("More than one movie is register with this name!!!!!!!!!")
-
-    elif len(idx) == 0:
+    if len(idx) == 0:
       return("Movie is not registered with us!!!!!!!!!!")
-
     else:
       idx = idx[0]
       sig_scores = list(enumerate(sig[idx]))
